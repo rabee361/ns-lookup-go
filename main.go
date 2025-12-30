@@ -6,6 +6,7 @@ import (
 	"log"
 	"ns/cmd"
 	"os"
+	"github.com/fatih/color"
 )
 
 func main() {
@@ -14,7 +15,7 @@ func main() {
 			{
                 Name:    "lookup",
                 Aliases: []string{"l"},
-                Usage:   "custom tool to make dns checkup on domains",
+                Usage:   color.BlueString("custom tool to make dns checkup on domains"),
                 Action: cmd.Lookup,
 				Flags: []cli.Flag{
 					&cli.StringFlag{
@@ -27,7 +28,7 @@ func main() {
             {
                 Name:    "scan",
                 Aliases: []string{"s"},
-                Usage:   "custom tool to make port checkup on domains",
+                Usage:   color.BlueString("custom tool to make port checkup on domains"),
 				Action: cmd.ScanPort,
 				Flags: []cli.Flag{
 					&cli.StringFlag{

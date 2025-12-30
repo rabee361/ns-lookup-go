@@ -1,17 +1,18 @@
 package cmd
 
 import (
-    "fmt"
-    "context"
+	"context"
+	"fmt"
 	"net"
+	"strings"
 	"time"
 
-    "github.com/urfave/cli/v3"
+	"github.com/urfave/cli/v3"
 )
 
 func ScanPort(ctx context.Context, cmd *cli.Command) error {
-    domain := "alnoor-hajj.com"
-    port := "70"
+    domain := ""
+    port := ""
     if cmd.NArg() > 0 {
         domain = cmd.Args().Get(0)
     }
@@ -28,16 +29,12 @@ func ScanPort(ctx context.Context, cmd *cli.Command) error {
 func scan_port(domain, port string) (string, error) {
     conn, err :=  net.DialTimeout("tcp", domain + ":" + port, 10*time.Second)
     if err != nil {
+        if strings.Contains(err.Error(), "timeout"){
+            return "error timeout", err
+        }
         return "error connecting", err
     }
     defer conn.Close()
     
-    // 💡 The "Validation" Trick: 
-    // If a firewall is faking the connection, writing to it often fails 
-    // or behaves differently.
-    err = conn.SetDeadline(time.Now().Add(10 * time.Second))
-    if err != nil {
-        return "open (but weird)", nil
-    }
     return "open", nil
 }
