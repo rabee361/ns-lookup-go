@@ -25,7 +25,7 @@ func Lookup(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("the ip for %s is: %s", domain, result)
+	fmt.Print(result)
 	return nil
 }
 

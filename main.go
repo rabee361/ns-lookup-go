@@ -39,22 +39,22 @@ func main() {
 					},
 				},
 			},
-			{
-				Name: "http",
-				Usage:   color.BlueString("health check tool for a website"),
-				Action:  cmd.Check,
-				Flags: []cli.Flag{
-					&cli.StringFlag{
-						Name:  "url",
-						Value: "all",
-						Usage: "url to check (default: all available)",
-					},
-				},
-			},
+			// {
+			// 	Name: "http",
+			// 	Usage:   color.BlueString("health check tool for a website"),
+			// 	Action:  cmd.Check,
+			// 	Flags: []cli.Flag{
+			// 		&cli.StringFlag{
+			// 			Name:  "url",
+			// 			Value: "all",
+			// 			Usage: "url to check (default: all available)",
+			// 		},
+			// 	},
+			// },
 			{
 				Name: "ssl",
-				Usage:   color.BlueString("custom tool to return info on the ssl cert of a website"),
-				Action:  cmd.CheckSSL,
+				Usage: color.BlueString("custom tool to return info on the ssl cert of a website"),
+				Action: cmd.CheckSSL,
 				Flags: []cli.Flag{
 					&cli.StringFlag{
 						Name:  "domain",
